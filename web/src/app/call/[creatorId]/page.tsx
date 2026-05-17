@@ -171,29 +171,20 @@ export default function CallPage({ params }: { params: Promise<{ creatorId: stri
 }
 
 import { Track } from "livekit-client";
-import { useTrackToggle } from "@livekit/components-react";
+import { TrackToggle } from "@livekit/components-react";
 
 function ControlToggle() {
-  const { toggle, enabled } = useTrackToggle({ source: Track.Source.Microphone });
-  
   return (
-    <button
+    <TrackToggle
+      source={Track.Source.Microphone}
       id="mic-toggle-btn"
-      onClick={() => toggle()}
-      className={`relative flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-3 sm:py-4 rounded-2xl transition-all duration-300 active:scale-95 select-none ${
-        enabled 
-          ? "bg-slate-800 hover:bg-slate-700 text-slate-200" 
-          : "bg-red-500/15 text-red-400 border border-red-500/30"
-      }`}
+      className="relative flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-3 sm:py-4 rounded-2xl transition-all duration-300 active:scale-95 select-none bg-slate-800 hover:bg-slate-700 text-slate-200 data-[lk-enabled=false]:bg-red-500/15 data-[lk-enabled=false]:text-red-400 data-[lk-enabled=false]:border data-[lk-enabled=false]:border-red-500/30"
     >
-      {/* Pulse ring when muted */}
-      {!enabled && (
-        <span className="absolute inset-0 rounded-2xl border-2 border-red-500/40 animate-ping opacity-30 pointer-events-none" />
-      )}
-      {enabled ? <Mic size={22} className="sm:w-6 sm:h-6" /> : <MicOff size={22} className="sm:w-6 sm:h-6" />}
+      <Mic size={22} className="sm:w-6 sm:h-6 block group-data-[lk-enabled=false]:hidden" />
+      <MicOff size={22} className="sm:w-6 sm:h-6 hidden group-data-[lk-enabled=false]:block" />
       <span className="text-sm sm:text-base font-semibold tracking-wide whitespace-nowrap">
-        {enabled ? "Mic On" : "Mic Off"}
+        Mic
       </span>
-    </button>
+    </TrackToggle>
   );
 }

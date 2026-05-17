@@ -175,7 +175,7 @@ async def entrypoint(ctx: JobContext):
 
     # Initialize the Gemini Realtime Model
     model = google.realtime.RealtimeModel(
-        model="gemini-3.1-flash-live-preview",
+        model="gemini-2.0-flash-exp",
         instructions=creator_prompt,
         voice="Puck", # Options: Puck, Charon, Kore, Fenrir, Aoede
     )
