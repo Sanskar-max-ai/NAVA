@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+:root {
+  --background: #020617;
+  --foreground: #f8fafc;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@utility glass {
+  background-color: theme('colors.slate.900 / 40%');
+  backdrop-filter: blur(12px);
+  border: 1px solid theme('colors.slate.800 / 50%');
+}
+
+@utility glass-hover {
+  &:hover {
+    background-color: theme('colors.slate.800 / 60%');
+    transition: all 300ms;
+  }
+}
+
+@utility text-gradient {
+  background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, theme('colors.indigo.400'), theme('colors.purple.400'), theme('colors.pink.400'));
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: .7;
+    transform: scale(1.02);
+  }
+}
