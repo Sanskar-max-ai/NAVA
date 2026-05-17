@@ -153,11 +153,11 @@ export default function CallPage({ params }: { params: Promise<{ creatorId: stri
             </div>
 
             {/* Controls */}
-            <div className="p-8 flex justify-center items-center gap-6 bg-slate-900/50 backdrop-blur-md">
-              <div className="flex items-center gap-4 glass p-2 rounded-3xl border border-slate-700/50">
+            <div className="p-4 sm:p-8 flex justify-center items-center gap-6 bg-slate-900/50 backdrop-blur-md">
+              <div className="flex items-center gap-3 sm:gap-4 glass p-2 rounded-3xl border border-slate-700/50">
                 <ControlToggle />
-                <DisconnectButton className="w-16 h-16 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white rounded-2xl transition-all active:scale-95 group">
-                  <PhoneOff size={28} className="group-hover:rotate-12 transition-transform" />
+                <DisconnectButton className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white rounded-2xl transition-all active:scale-95 group">
+                  <PhoneOff size={24} className="sm:w-7 sm:h-7 group-hover:rotate-12 transition-transform" />
                 </DisconnectButton>
               </div>
             </div>
@@ -177,14 +177,22 @@ function ControlToggle() {
   
   return (
     <button
+      id="mic-toggle-btn"
       onClick={() => localParticipant.setMicrophoneEnabled(!isMicrophoneEnabled)}
-      className={`w-16 h-16 flex items-center justify-center rounded-2xl transition-all active:scale-95 ${
+      className={`relative flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-3 sm:py-4 rounded-2xl transition-all duration-300 active:scale-95 select-none ${
         isMicrophoneEnabled 
           ? "bg-slate-800 hover:bg-slate-700 text-slate-200" 
-          : "bg-red-500/10 text-red-500 border border-red-500/20"
+          : "bg-red-500/15 text-red-400 border border-red-500/30"
       }`}
     >
-      {isMicrophoneEnabled ? <Mic size={28} /> : <MicOff size={28} />}
+      {/* Pulse ring when muted */}
+      {!isMicrophoneEnabled && (
+        <span className="absolute inset-0 rounded-2xl border-2 border-red-500/40 animate-ping opacity-30 pointer-events-none" />
+      )}
+      {isMicrophoneEnabled ? <Mic size={22} className="sm:w-6 sm:h-6" /> : <MicOff size={22} className="sm:w-6 sm:h-6" />}
+      <span className="text-sm sm:text-base font-semibold tracking-wide whitespace-nowrap">
+        {isMicrophoneEnabled ? "Mic On" : "Mic Off"}
+      </span>
     </button>
   );
 }
