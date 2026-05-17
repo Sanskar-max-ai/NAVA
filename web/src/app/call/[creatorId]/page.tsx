@@ -170,28 +170,29 @@ export default function CallPage({ params }: { params: Promise<{ creatorId: stri
   );
 }
 
+import { Track } from "livekit-client";
+import { useTrackToggle } from "@livekit/components-react";
+
 function ControlToggle() {
-  const { isMicrophoneEnabled, localParticipant } = useLocalParticipant();
-  
-  if (!localParticipant) return null;
+  const { toggle, enabled } = useTrackToggle({ source: Track.Source.Microphone });
   
   return (
     <button
       id="mic-toggle-btn"
-      onClick={() => localParticipant.setMicrophoneEnabled(!isMicrophoneEnabled)}
+      onClick={toggle}
       className={`relative flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-3 sm:py-4 rounded-2xl transition-all duration-300 active:scale-95 select-none ${
-        isMicrophoneEnabled 
+        enabled 
           ? "bg-slate-800 hover:bg-slate-700 text-slate-200" 
           : "bg-red-500/15 text-red-400 border border-red-500/30"
       }`}
     >
       {/* Pulse ring when muted */}
-      {!isMicrophoneEnabled && (
+      {!enabled && (
         <span className="absolute inset-0 rounded-2xl border-2 border-red-500/40 animate-ping opacity-30 pointer-events-none" />
       )}
-      {isMicrophoneEnabled ? <Mic size={22} className="sm:w-6 sm:h-6" /> : <MicOff size={22} className="sm:w-6 sm:h-6" />}
+      {enabled ? <Mic size={22} className="sm:w-6 sm:h-6" /> : <MicOff size={22} className="sm:w-6 sm:h-6" />}
       <span className="text-sm sm:text-base font-semibold tracking-wide whitespace-nowrap">
-        {isMicrophoneEnabled ? "Mic On" : "Mic Off"}
+        {enabled ? "Mic On" : "Mic Off"}
       </span>
     </button>
   );
