@@ -179,7 +179,7 @@ function ControlToggle() {
   return (
     <button
       id="mic-toggle-btn"
-      onClick={toggle}
+      onClick={() => toggle()}
       className={`relative flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-3 sm:py-4 rounded-2xl transition-all duration-300 active:scale-95 select-none ${
         enabled 
           ? "bg-slate-800 hover:bg-slate-700 text-slate-200" 
