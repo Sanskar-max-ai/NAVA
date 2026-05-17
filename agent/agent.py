@@ -109,7 +109,7 @@ async def entrypoint(ctx: JobContext):
 
     # Initialize the Gemini Realtime Model with the full transcript baked in
     model = google.realtime.RealtimeModel(
-        model="gemini-2.0-flash-exp",
+        model="gemini-3.1-flash-live-preview",
         instructions=full_instructions,
         voice="Puck",
     )
