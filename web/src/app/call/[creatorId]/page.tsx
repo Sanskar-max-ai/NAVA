@@ -171,13 +171,13 @@ export default function CallPage({ params }: { params: Promise<{ creatorId: stri
 }
 
 function ControlToggle() {
-  const { isMicrophoneEnabled, participant } = useLocalParticipant();
+  const { isMicrophoneEnabled, localParticipant } = useLocalParticipant();
   
-  if (!participant) return null;
+  if (!localParticipant) return null;
   
   return (
     <button
-      onClick={() => participant.setMicrophoneEnabled(!isMicrophoneEnabled)}
+      onClick={() => localParticipant.setMicrophoneEnabled(!isMicrophoneEnabled)}
       className={`w-16 h-16 flex items-center justify-center rounded-2xl transition-all active:scale-95 ${
         isMicrophoneEnabled 
           ? "bg-slate-800 hover:bg-slate-700 text-slate-200" 
