@@ -133,27 +133,27 @@ export default function CallPage({ params }: { params: Promise<{ creatorId: stri
             </div>
 
             {/* Main Visualizer Area */}
-            <div className="flex-1 flex flex-col items-center justify-center p-8 md:p-12 relative">
+            <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-8 min-h-0 relative overflow-hidden">
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="w-full max-w-md h-48 flex items-center justify-center"
+                className="w-full max-w-md h-32 sm:h-48 flex items-center justify-center"
               >
-                <BarVisualizer className="h-32 w-full" />
+                <BarVisualizer className="h-24 sm:h-32 w-full" />
               </motion.div>
 
-              <div className="mt-12 text-center space-y-2">
-                <h2 className="text-3xl font-outfit font-bold tracking-tight text-white">
+              <div className="mt-6 sm:mt-12 text-center space-y-2">
+                <h2 className="text-2xl sm:text-3xl font-outfit font-bold tracking-tight text-white">
                   {creator?.name}
                 </h2>
-                <p className="text-indigo-400 font-medium tracking-wide uppercase text-sm">
+                <p className="text-indigo-400 font-medium tracking-wide uppercase text-xs sm:text-sm">
                   {creator?.title}
                 </p>
               </div>
             </div>
 
             {/* Controls */}
-            <div className="p-4 sm:p-8 flex justify-center items-center gap-6 bg-slate-900/50 backdrop-blur-md">
+            <div className="p-4 sm:p-6 flex justify-center items-center gap-4 sm:gap-6 bg-slate-900/50 backdrop-blur-md shrink-0 border-t border-slate-800/50">
               <div className="flex items-center gap-3 sm:gap-4 glass p-2 rounded-3xl border border-slate-700/50">
                 <ControlToggle />
                 <DisconnectButton className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white rounded-2xl transition-all active:scale-95 group">
